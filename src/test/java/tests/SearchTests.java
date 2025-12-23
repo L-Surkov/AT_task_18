@@ -1,10 +1,9 @@
 package tests;
 
+import jdk.jfr.Description;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import pages.SearchPage;
-import config.ConfigReader;
-import config.TestConfig;
 
 public class SearchTests extends TestBase {
 
@@ -12,6 +11,7 @@ public class SearchTests extends TestBase {
 
     @Test
     @Tag("SearchTests")
+    @Description("Проверка поисковой строки и вывода релевантного значения в поиске")
     void successfulSearchTest() {
         searchPage = new SearchPage();  // Создаём после инициализации драйвера
         String searchTerm = "Appium";
@@ -22,8 +22,9 @@ public class SearchTests extends TestBase {
 
     @Test
     @Tag("SearchTests")
+    @Description("Проверка поисковой строки и открытия статьи при клике на результат")
     void searchAndOpenArticle() {
-        searchPage = new SearchPage();  // Создаём после инициализации драйвера
+        searchPage = new SearchPage();
         String searchTerm = "RestApi";
         String expectedTitle = "REST";
         searchPage.openSearch();

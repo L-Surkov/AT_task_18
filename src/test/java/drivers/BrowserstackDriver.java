@@ -19,35 +19,24 @@ public class BrowserstackDriver implements WebDriverProvider {
 
         MutableCapabilities caps = new MutableCapabilities();
 
-        // Обязательные credentials (W3C-формат)
-        String user = config.browserstackUser();
-        String key = config.browserstackKey();
-
-        if (user == null || user.isEmpty()) {
-            throw new RuntimeException("BrowserStack user is not configured");
-        }
-        if (key == null || key.isEmpty()) {
-            throw new RuntimeException("BrowserStack key is not configured");
-        }
-
-        caps.setCapability("browserstack:user", config.browserstackUser());
-        caps.setCapability("browserstack:key", config.browserstackKey());
-
-        System.out.println("BS User: " + user);
-        System.out.println("BS Key: " + key);
-
-        // Настройки теста (W3C-формат)
-        caps.setCapability("browserstack:project", config.project());
-        caps.setCapability("browserstack:build", config.buildName());
-        caps.setCapability("browserstack:name", config.testName());
-
-        // Устройство и ОС
-        caps.setCapability("browserstack:deviceName", config.deviceName());
-        caps.setCapability("browserstack:osVersion", config.osVersion());
+        String browserstackUser = System.getProperty("browserstack.user");
+        String browserstackKey = System.getProperty("browserstack.key");
 
 
-        // Приложение и автоматизация
-        caps.setCapability("browserstack:app", config.app());
+        caps.setCapability("userName", browserstackUser);
+        caps.setCapability("accessKey", browserstackKey);
+
+
+        caps.setCapability("project", config.project());
+        caps.setCapability("build", config.buildName());
+        caps.setCapability("name", config.testName());
+
+
+        caps.setCapability("deviceName", config.deviceName());
+        caps.setCapability("osVersion", config.osVersion());
+
+
+        caps.setCapability("app", config.app());
         caps.setCapability("appium:automationName", config.appiumAutomationName());
 
         try {
