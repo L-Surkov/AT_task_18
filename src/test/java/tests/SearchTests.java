@@ -1,5 +1,6 @@
 package tests;
 
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import pages.SearchPage;
 import config.ConfigReader;
@@ -10,6 +11,7 @@ public class SearchTests extends TestBase {
     private SearchPage searchPage;
 
     @Test
+    @Tag("SearchTests")
     void successfulSearchTest() {
         searchPage = new SearchPage();  // Создаём после инициализации драйвера
         String searchTerm = "Appium";
@@ -19,6 +21,7 @@ public class SearchTests extends TestBase {
     }
 
     @Test
+    @Tag("SearchTests")
     void searchAndOpenArticle() {
         searchPage = new SearchPage();  // Создаём после инициализации драйвера
         String searchTerm = "RestApi";
